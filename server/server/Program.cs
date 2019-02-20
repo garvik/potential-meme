@@ -1,7 +1,5 @@
 using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Server.Kestrel.Core;
-using System.Net;
 
 namespace server
 {
@@ -15,15 +13,16 @@ namespace server
         public static IWebHostBuilder CreateWebHostBuilder(string[] args)
         {
             return WebHost.CreateDefaultBuilder(args)
-                .ConfigureKestrel(options =>
-                {
-                    options.Listen(IPAddress.Any, 8080, listenOptions =>
-                    {
-                        listenOptions.Protocols = HttpProtocols.Http1AndHttp2;
-                        listenOptions.UseHttps();
-                    });
-                })
+                .UseKestrel()
                 .UseStartup<Startup>();
+            //.ConfigureKestrel(options =>
+            // {
+            //     options.Listen(IPAddress.Any, 8080, listenOptions =>
+            //     {
+            //         listenOptions.Protocols = HttpProtocols.Http1AndHttp2;
+            //         listenOptions.UseHttps();
+            //     });
+            // });
         }
     }
 }
