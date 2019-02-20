@@ -3,19 +3,28 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "react": "^16.8.2",
+    "react-appinsights": "^2.0.1",
+    "react-dom": "^16.8.2",
+    "react-scripts": "2.1.5",
+    "typescript": "3.3.3"
+  },
+  "devDependencies": {
     "@types/jest": "24.0.6",
     "@types/node": "11.9.4",
     "@types/react": "16.8.4",
     "@types/react-dom": "16.8.2",
-    "react": "^16.8.2",
-    "react-dom": "^16.8.2",
-    "react-scripts": "2.1.5",
-    "typescript": "3.3.3"
+    "prettier": "^1.16.4",
+    "tslint": "^5.12.1",
+    "tslint-config-prettier": "^1.18.0",
+    "tslint-config-standard": "^8.0.1",
+    "tslint-react": "^3.6.0"
   },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
+    "test:ci": "set CI=true && react-scripts test",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
