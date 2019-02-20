@@ -1,6 +1,5 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.SpaServices.ReactDevelopmentServer;
 using Microsoft.Extensions.Configuration;
@@ -44,8 +43,8 @@ namespace server
             }
 
             app.UseHttpsRedirection();
-            app.UseStaticFiles();
-            app.UseSpaStaticFiles();
+            app.UseStaticFiles(StaticFileOptionsHelper.GetOptionsWithCache());
+            app.UseSpaStaticFiles(StaticFileOptionsHelper.GetOptionsWithCache());
 
             app.UseMvc(routes =>
             {
