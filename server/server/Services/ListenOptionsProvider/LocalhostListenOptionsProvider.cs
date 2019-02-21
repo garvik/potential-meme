@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Server.Kestrel.Core;
 using System;
 using System.Net;
 
-namespace server.Services
+namespace server.Services.ListenOptionsProvider
 {
     public class LocalhostListenOptionsProvider : IListenOptionsProvider
     {

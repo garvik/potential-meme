@@ -4,7 +4,7 @@ using Microsoft.Extensions.Configuration;
 using System;
 using System.Net;
 
-namespace server.Services
+namespace server.Services.ListenOptionsProvider
 {
     public class ProductionListenOptionsProvider : IListenOptionsProvider
     {

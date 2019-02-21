@@ -4,7 +4,8 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.SpaServices.ReactDevelopmentServer;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using server.Services;
+using server.Services.ListenOptionsProvider;
+using server.Services.StaticFileOptionsProvider;
 
 namespace server
 {
@@ -30,6 +31,7 @@ namespace server
 
             services.AddResponseCompression();
 
+            services.AddTransient<IStaticFileOptionsProvider, CachedStaticFileOptionsProvider>();
             services.AddTransient<IListenOptionsProvider, LocalhostListenOptionsProvider>();
             //services.AddTransient<IListenOptionsProvider, ProductionListenOptionsProvider>();
         }
@@ -50,8 +52,11 @@ namespace server
 
             app.UseHttpsRedirection();
             app.UseResponseCompression();
-            app.UseStaticFiles(StaticFileOptionsHelper.GetOptionsWithCache());
-            app.UseSpaStaticFiles(StaticFileOptionsHelper.GetOptionsWithCache());
+
+            var staticFileOptionsProvider = app.ApplicationServices.GetRequiredService<IStaticFileOptionsProvider>();
+
+            app.UseStaticFiles(staticFileOptionsProvider.GetStaticFileOptions());
+            app.UseSpaStaticFiles(staticFileOptionsProvider.GetStaticFileOptions());
 
             app.UseMvc(routes =>
             {

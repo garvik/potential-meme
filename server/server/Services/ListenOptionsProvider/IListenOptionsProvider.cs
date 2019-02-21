@@ -2,7 +2,7 @@
 using System;
 using System.Net;
 
-namespace server.Services
+namespace server.Services.ListenOptionsProvider
 {
     internal interface IListenOptionsProvider
     {

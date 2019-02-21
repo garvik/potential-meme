@@ -27,9 +27,13 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Update="production_cert.pfx">
+    <None Remove="production_cert.pfx" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="production_cert.pfx">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
+    </Content>
   </ItemGroup>
 
   <ItemGroup>
