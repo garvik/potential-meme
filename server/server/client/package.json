@@ -7,13 +7,15 @@
     "react-appinsights": "^2.0.1",
     "react-dom": "^16.8.2",
     "react-scripts": "2.1.5",
-    "typescript": "3.3.3"
+    "typescript": "3.3.3",
+    "react-helmet": "5.2.0"
   },
   "devDependencies": {
     "@types/jest": "24.0.6",
     "@types/node": "11.9.4",
     "@types/react": "16.8.4",
     "@types/react-dom": "16.8.2",
+    "@types/react-helmet": "5.0.8",
     "prettier": "^1.16.4",
     "tslint": "^5.12.1",
     "tslint-config-prettier": "^1.18.0",
