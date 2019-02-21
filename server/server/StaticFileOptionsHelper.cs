@@ -6,8 +6,7 @@ namespace server
     public static class StaticFileOptionsHelper
     {
         public static StaticFileOptions GetOptionsWithCache()
-        {
-            return new StaticFileOptions
+            => new StaticFileOptions
             {
                 OnPrepareResponse = ctx =>
                 {
@@ -16,6 +15,5 @@ namespace server
                         "public,max-age=" + durationInSeconds;
                 }
             };
-        }
     }
 }

@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.SpaServices.ReactDevelopmentServer;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using server.Services;
 
 namespace server
 {
@@ -26,6 +27,11 @@ namespace server
             {
                 configuration.RootPath = "client/build";
             });
+
+            services.AddResponseCompression();
+
+            services.AddTransient<IListenOptionsProvider, LocalhostListenOptionsProvider>();
+            services.AddTransient<IListenOptionsProvider, ProductionListenOptionsProvider>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -43,6 +49,7 @@ namespace server
             }
 
             app.UseHttpsRedirection();
+            app.UseResponseCompression();
             app.UseStaticFiles(StaticFileOptionsHelper.GetOptionsWithCache());
             app.UseSpaStaticFiles(StaticFileOptionsHelper.GetOptionsWithCache());
 
