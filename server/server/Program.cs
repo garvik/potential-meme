@@ -18,19 +18,19 @@ namespace server
                 .UseApplicationInsights()
                 .UseKestrel()
                 .UseStartup<Startup>()
-                .ConfigureKestrel((webHost, options) =>
+                .ConfigureKestrel((webHostBuilderContext, kestrelOptions) =>
                  {
-                     var listenOptionsProviders = options
+                     var listenOptionsProviders = kestrelOptions
                         .ApplicationServices
                         .GetServices<IListenOptionsProvider>();
 
                      var listenOptionsProvider = listenOptionsProviders
                         .SingleOrDefault(provider =>
-                            provider.GetEnvironmentName() == webHost.HostingEnvironment.EnvironmentName);
+                            provider.GetEnvironmentName() == webHostBuilderContext.HostingEnvironment.EnvironmentName);
 
                      if (listenOptionsProvider != null)
                      {
-                         options.Listen(
+                         kestrelOptions.Listen(
                             listenOptionsProvider.GetIPAddress(),
                             listenOptionsProvider.GetPort(),
                             listenOptionsProvider.GetListenOptions());

@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Server.Kestrel.Core;
 using Microsoft.Extensions.Configuration;
 using System;
 using System.Net;
+using System.Security.Cryptography.X509Certificates;
 
 namespace server.Services.ListenOptionsProvider
 {
@@ -24,8 +25,9 @@ namespace server.Services.ListenOptionsProvider
             {
                 listenOptions.Protocols = HttpProtocols.Http1AndHttp2;
                 listenOptions.UseHttps(
-                    "production_cert.pfx",
-                    _configuration["KESTREL_HTTPS_CERT_PASSWORD"]);
+                    storeName: StoreName.My,
+                    subject: _configuration["CERT_SUBJECT_NAME"],
+                    allowInvalid: true);
             };
 
         public int GetPort() => 8080;

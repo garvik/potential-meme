@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.SpaServices.ReactDevelopmentServer;
 using Microsoft.Extensions.Configuration;
@@ -33,7 +34,16 @@ namespace server
 
             services.AddTransient<IStaticFileOptionsProvider, CachedStaticFileOptionsProvider>();
             services.AddTransient<IListenOptionsProvider, LocalhostListenOptionsProvider>();
-            //services.AddTransient<IListenOptionsProvider, ProductionListenOptionsProvider>();
+            services.AddTransient<IListenOptionsProvider, ProductionListenOptionsProvider>();
+
+            services.AddAntiforgery(
+                options =>
+                {
+                    options.Cookie.Name = "_af";
+                    options.Cookie.HttpOnly = true;
+                    options.Cookie.SecurePolicy = CookieSecurePolicy.Always;
+                    options.HeaderName = "X-XSRF-TOKEN";
+                });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
