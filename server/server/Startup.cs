@@ -31,7 +31,7 @@ namespace server
             services.AddResponseCompression();
 
             services.AddTransient<IListenOptionsProvider, LocalhostListenOptionsProvider>();
-            services.AddTransient<IListenOptionsProvider, ProductionListenOptionsProvider>();
+            //services.AddTransient<IListenOptionsProvider, ProductionListenOptionsProvider>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
